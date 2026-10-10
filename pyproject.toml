@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gomem"
+version = "0.1.0"
+description = "Python client for the gomem agent-memory library (ctypes over libgomem)."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "gomem contributors" }]
+
+[project.urls]
+Homepage = "https://github.com/alpdeniz/gomem"
+
+[tool.setuptools]
+package-dir = { "" = "python" }
+py-modules = ["gomem"]

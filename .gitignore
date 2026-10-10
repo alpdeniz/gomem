@@ -1,0 +1,15 @@
+.env
+*.db
+*.db-wal
+*.db-shm
+.DS_Store
+coverage.out
+**/__pycache__
+*.egg-info/
+dist/
+build/
+.venv/
+python/libgomem.so
+python/libgomem.dylib
+python/gomem.dll
+python/libgomem.h
