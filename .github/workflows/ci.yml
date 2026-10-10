@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Check
+        run: make all
+      - name: Race
+        run: make test-race
+      - name: Python bridge
+        run: make python-smoke
+      - name: Vulnerabilities
+        if: runner.os == 'Linux'
+        run: go run golang.org/x/vuln/cmd/govulncheck@latest ./...
